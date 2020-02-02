@@ -1,99 +1,93 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+@extends('layouts.app')
 
-        <title>Laravel</title>
+@section('content')
+<section class="home-hero">
+    <div class="container">
+        <h1 class="title">Hello I'm Gaëlle Hardy</h1>
+        <h3>Web developer</h3>
+        <a href="" class="button button-accent">Contact me</a>
+    </div>
+</section>
 
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
-
-        <!-- Styles -->
-        <style>
-            html, body {
-                background-color: #fff;
-                color: #636b6f;
-                font-family: 'Nunito', sans-serif;
-                font-weight: 200;
-                height: 100vh;
-                margin: 0;
-            }
-
-            .full-height {
-                height: 100vh;
-            }
-
-            .flex-center {
-                align-items: center;
-                display: flex;
-                justify-content: center;
-            }
-
-            .position-ref {
-                position: relative;
-            }
-
-            .top-right {
-                position: absolute;
-                right: 10px;
-                top: 18px;
-            }
-
-            .content {
-                text-align: center;
-            }
-
-            .title {
-                font-size: 84px;
-            }
-
-            .links > a {
-                color: #636b6f;
-                padding: 0 25px;
-                font-size: 13px;
-                font-weight: 600;
-                letter-spacing: .1rem;
-                text-decoration: none;
-                text-transform: uppercase;
-            }
-
-            .m-b-md {
-                margin-bottom: 30px;
-            }
-        </style>
-    </head>
-    <body>
-        <div class="flex-center position-ref full-height">
-            @if (Route::has('login'))
-                <div class="top-right links">
-                    @auth
-                        <a href="{{ url('/home') }}">Home</a>
-                    @else
-                        <a href="{{ route('login') }}">Login</a>
-
-                        @if (Route::has('register'))
-                            <a href="{{ route('register') }}">Register</a>
-                        @endif
-                    @endauth
+@foreach($contentBlocks as $contentBlock)
+    @if($contentBlock->internal_name == 'about-me')
+        <div class="container">
+            <section class="home-about">
+                <div class="home-about-textbox">
+                    <h1>{{ $contentBlock->title }}</h1>
+                    <p>{{ $contentBlock->description }}</p>
                 </div>
-            @endif
-
-            <div class="content">
-                <div class="title m-b-md">
-                    Laravel
-                </div>
-
-                <div class="links">
-                    <a href="https://laravel.com/docs">Docs</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://blog.laravel.com">Blog</a>
-                    <a href="https://nova.laravel.com">Nova</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
-                </div>
-            </div>
+            </section>
         </div>
-    </body>
-</html>
+    @endif
+@endforeach
+
+<section class="portfolio">
+    <h1>Some of our work</h1>
+    <!-- portfolio item 01 -->
+    <figure class="port-item">
+        <img src="../storage/app/public/iphone2.jpeg" alt="portfolio item">
+        <figcaption class="port-desc">
+            <p>Project title</p>
+            <a href="" class="button button-accent button-small">See Project</a>
+        </figcaption>
+    </figure>
+
+    <!-- portfolio item 02 -->
+    <figure class="port-item">
+        <img src="../storage/app/public/iphone2.jpeg" alt="portfolio item">
+        <figcaption class="port-desc">
+            <p>Project title</p>
+            <a href="" class="button button-accent button-small">See Project</a>
+        </figcaption>
+    </figure>
+
+    <!-- portfolio item 03 -->
+    <figure class="port-item">
+        <img src="../storage/app/public/iphone2.jpeg" alt="portfolio item">
+        <figcaption class="port-desc">
+            <p>Project title</p>
+            <a href="" class="button button-accent button-small">See Project</a>
+        </figcaption>
+    </figure>
+
+    <!-- portfolio item 04 -->
+    <figure class="port-item">
+        <img src="../storage/app/public/iphone2.jpeg" alt="portfolio item">
+        <figcaption class="port-desc">
+            <p>Project title</p>
+            <a href="" class="button button-accent button-small">See Project</a>
+        </figcaption>
+    </figure>
+
+    <!-- portfolio item 05 -->
+    <figure class="port-item">
+        <img src="../storage/app/public/iphone2.jpeg" alt="portfolio item">
+        <figcaption class="port-desc">
+            <p>Project title</p>
+            <a href="" class="button button-accent button-small">See Project</a>
+        </figcaption>
+    </figure>
+
+    <!-- portfolio item 06 -->
+    <figure class="port-item">
+        <img src="../storage/app/public/iphone2.jpeg" alt="portfolio item">
+        <figcaption class="port-desc">
+            <p>Project title</p>
+            <a href="" class="button button-accent button-small">See Project</a>
+        </figcaption>
+    </figure>
+</section>
+
+{{-- <section class="cta">
+    <div class="container">
+        <h1 class="title title-cta">{{$setting->contact_site_title}}</h1>
+        <p style="margin-bottom:20px">{{$setting->sub_contact_site_title}}</p>
+        <a href="" class="button button-dark">{{$setting->dark_button_text}}</a>
+    </div>
+</section> --}}
+
+<footer>
+    <p><a href="{{ route('login') }}">Gaëlle Hardy</a></p>
+</footer>
+@endsection

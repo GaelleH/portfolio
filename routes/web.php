@@ -11,12 +11,11 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'WelcomeController@index')->name('welcome');
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('content-blocks-list', 'ContentBlockController@contentBlocksList');
 
 Route::resource('content-blocks', 'ContentBlockController');

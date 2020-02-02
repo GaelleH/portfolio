@@ -1,4 +1,5 @@
 @import url(https://fonts.googleapis.com/css?family=Nunito);@charset "UTF-8";
+@import url('https://fonts.googleapis.com/css?family=Raleway:300,400,700,900');
 
 /*!
  * Bootstrap v4.4.1 (https://getbootstrap.com/)
@@ -42,6 +43,7 @@
 *::before,
 *::after {
   box-sizing: border-box;
+  transition: all ease-in-out 250ms;
 }
 
 html {
@@ -66,7 +68,7 @@ section {
 
 body {
   margin: 0;
-  font-family: "Nunito", sans-serif;
+  font-family: 'Raleway', sans-serif;
   font-size: 0.9rem;
   font-weight: 400;
   line-height: 1.6;
@@ -85,7 +87,6 @@ hr {
   overflow: visible;
 }
 
-h1,
 h2,
 h3,
 h4,
@@ -209,8 +210,8 @@ figure {
 }
 
 img {
-  vertical-align: middle;
-  border-style: none;
+  max-width: 100%;
+  height: auto;
 }
 
 svg {
@@ -246,6 +247,223 @@ button {
 button:focus {
   outline: 1px dotted;
   outline: 5px auto -webkit-focus-ring-color;
+}
+
+/* typography
+==================== */
+
+h1 {
+  font-weight: 300;
+  font-size: 1.7rem;
+  margin-top: 0;
+}
+
+p {
+  margin-top: 0;
+  line-height: 1.5;
+}
+
+p:last-of-type {
+  margin-bottom: 0;
+}
+
+.title {
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+  margin-top: 1em;
+}
+
+.title-cta {
+  margin: 0 0 .5em;
+}
+
+@media (min-width: 60rem) {
+  p {
+      font-size: 1.2rem;
+      line-height: 1.6;
+  }
+
+  .title {
+      font-size: 3.7rem;
+  }
+}
+
+/* home-hero
+==================== */
+
+.home-hero {
+  background-image: url(../../storage/app/public/desk.jpeg);
+  background-size: cover;
+  background-position: center;
+  padding: 12em 0;
+}
+
+@media (min-width: 60rem) {
+  .home-hero {
+      height: 100vh;
+      padding-top: 20vh;
+  }
+}
+
+/* home-hero
+==================== */
+
+.home-about-textbox {
+  background-color: #232323;
+  padding: 4em;
+  width: 100vw;
+  margin-left: -2.5%;
+  outline: 2px solid #fff;
+  outline-offset: -2.5em;
+  color: #fff;
+  position: relative;
+}
+
+.home-about-textbox h1 {
+  color: #fff;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  top: .75em;
+  background: #232323;
+  padding: 0 .25em;
+}
+
+@media (min-width: 25rem) {
+  h1 {
+      font-size: 2rem;
+  }
+  .home-about-textbox h1 {
+      top: .6em;
+      padding: 0 .325em;
+  }
+}
+
+@media (min-width: 60rem) {
+  h1 {
+      font-size: 1.9rem;
+  }
+
+  .home-about {
+      /* background-image: url(../../storage/app/public/about_2.jpg); */
+      background-repeat: no-repeat;
+      padding-bottom: 10em;
+  }
+
+  .home-about-textbox {
+      width: 50%;
+      padding: 7em;
+      outline-offset: -3.75em;
+      top: -5em;
+      margin-left: -2.5%;
+      text-align: left;
+      box-shadow: 0 0 4em 0 rgba(0, 0, 0, .3);
+  }
+
+  .home-about-textbox h1 {
+      top: .75em;
+      left: 6rem;
+      transform: translateX(0);
+  }
+}
+
+/* portfolio
+==================== */
+
+.portfolio {
+  margin: 3em 3em 0;
+}
+
+.port-item {
+  margin: 0 0 15px 0;
+  position: relative;
+}
+
+.port-item img {
+  display: block;
+  width: 95%;
+}
+
+.port-desc {
+  position: absolute;
+  z-index: 100;
+  bottom: 0em;
+  left: 0em;
+  right: 0em;
+  color: #000;
+  background: rgba(255, 255, 255, .6);
+  padding-bottom: 1em;
+}
+
+.port-desc p {
+  margin: 1em;
+}
+
+@media (min-width: 37rem) {
+  .port-item {
+      width: 50%;
+      float: left;
+  }
+}
+
+@media (min-width: 60rem) {
+  .port-item {
+      width: 33.3333334%;
+      overflow: hidden;
+  }
+
+  .port-desc {
+      transform: translateY(150%);
+  }
+
+  .port-item:hover .port-desc {
+      transform: translateY(0%);
+  }
+}
+
+/* typography
+==================== */
+
+.button {
+  display: inline-block;
+  font-size: 1.15rem;
+  text-decoration: none;
+  text-transform: uppercase;
+  border-width: 2px;
+  border-style: solid;
+  padding: .5em 1.75em;
+}
+
+@media (min-width: 60rem) {
+  .button {
+      font-size: 1.5rem;
+  }
+}
+
+.button-small {
+  font-size: .7rem;
+  font-weight: 700;
+}
+
+.button-accent {
+  color: #000;
+  margin-top: 20px;
+}
+
+.button-accent:hover,
+.button-accent:focus {
+  background: #000;
+  color: #fff
+}
+
+.button-dark {
+  color: #fff;
+}
+
+.button-dark:hover,
+.button-dark:focus {
+  background: #fff;
+  color: #000;
 }
 
 input,
@@ -372,26 +590,18 @@ template {
   display: none !important;
 }
 
-h1,
 h2,
 h3,
 h4,
 h5,
 h6,
-.h1,
 .h2,
 .h3,
 .h4,
 .h5,
 .h6 {
   margin-bottom: 0.5rem;
-  font-weight: 500;
   line-height: 1.2;
-}
-
-h1,
-.h1 {
-  font-size: 2.25rem;
 }
 
 h2,
