@@ -7,6 +7,9 @@
 require('./bootstrap');
 
 window.Vue = require('vue');
+import store from './store/index';
+import ElementUI from 'element-ui';
+// import 'element-ui/lib/theme-chalk/index.css';
 
 /**
  * The following block of code may be used to automatically register your
@@ -20,6 +23,8 @@ window.Vue = require('vue');
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
+Vue.component('create-post', require('./components/CreatePost.vue').default);
+Vue.component('all-posts', require('./components/AllPosts.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -28,40 +33,6 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
  */
 
 const app = new Vue({
+    store,
     el: '#app',
-    data() {
-        return {
-            sidebar: {
-                height: 0,
-                windowHeight: 0,
-                windowScrollTop: 0,
-            }
-        }
-    },
-    computed: {
-        sidebarStyles() {
-            if (this.sidebar.height <= this.sidebar.windowHeight) {
-                return { 'fixed-top': true }
-            }
-        }
-    },
-    created() {
-        window.addEventListener('resize', this.handleResize)
-        window.addEventListener('scroll', this.handleScroll)
-    },
-    mounted() {
-        this.calculateSidebar()
-    },
-    methods: {
-        handleResize: _.throttle(function () {
-            this.calculateSidebar()
-        }, 100),
-        handleScroll: _.throttle(function () {
-            this.sidebar.windowScrollTop = window.pageYOffset || document.documentElement.scrollTop
-        }, 100),
-        calculateSidebar() {
-            this.sidebar.height = this.$refs.sidebarContent.offsetHeight
-            this.sidebar.windowHeight = window.innerHeight
-        }
-    }
 });

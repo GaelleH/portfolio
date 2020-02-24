@@ -21,7 +21,7 @@
 </head>
 <body>
     <div id="app">
-        <div :class="sidebarStyles" ref="sidebarContent">
+        <div ref="sidebarContent">
             <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
                 <div class="container">
                     <a class="navbar-brand" href="{{ url('/') }}">
@@ -38,6 +38,9 @@
                         <ul class="navbar-nav mr-auto">
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('content-blocks.index') }}">{{ __('Tekstblokken') }}</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('projects.index') }}">{{ __('Projecten') }}</a>
                             </li>
                         </ul>
                         @endguest
