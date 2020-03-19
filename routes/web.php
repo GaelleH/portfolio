@@ -15,12 +15,6 @@ Route::get('/', 'WelcomeController@index')->name('welcome');
 
 Auth::routes();
 
-// Route::group(['middleware' => 'auth', 'prefix' => 'post'], function () {
-//     Route::get('get-all', 'ProjectController@getAllPosts')->name('fetch_all');
-//     // Route::get('create-post', 'ProjectController@createPost')->name('create_post');
-//     Route::post('create-post', 'ProjectController@createPost')->name('create_post');
-// });
-
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('content-blocks-list', 'ContentBlockController@contentBlocksList');
 Route::get('projects-list', 'ProjectsController@projectsList');

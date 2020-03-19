@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use App\Project;
+use App\ProjectImage;
 
 class ProjectsController extends Controller
 {
@@ -34,8 +36,33 @@ class ProjectsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-        //
+    {   
+        $this->validate($request, [
+            'filename' => 'required',
+            'filename.*' => 'mimes:png,jpg,jpeg'
+        ]);
+
+        $project = new Project;
+        $project->description = $request->input('description');
+        $project->title = $request->input('title');
+        $project->save();
+
+        if ($request->hasFile('filename'))
+        {
+            foreach ($request->file('filename') as $file)
+            {
+                $name=$file->getClientOriginalName();
+                $file->move(public_path().'/files/', $name);
+                $data[] = $name; 
+                
+                $projectImage = new ProjectImage;
+                $projectImage->project_id = $project->id;
+                $projectImage->project_image_path = $name;
+                $projectImage->save();
+            }
+        }
+
+        return redirect('/projects')->with('succes', 'Nieuw project toegevoegd');
     }
 
     /**
@@ -46,7 +73,9 @@ class ProjectsController extends Controller
      */
     public function show($id)
     {
-        //
+        $project = Project::with('project_images')->find($id);
+
+        return view('projects.show')->with('project', $project);
     }
 
     /**
@@ -57,7 +86,9 @@ class ProjectsController extends Controller
      */
     public function edit($id)
     {
-        //
+        $project = Project::with('project_images')->find($id);
+
+        return view('projects.edit')->with('project', $project);
     }
 
     /**
@@ -69,7 +100,47 @@ class ProjectsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        // $this->validate($request, [
+        //     'filename' => 'required',
+        //     'filename.*' => 'mimes:png,jpg,jpeg'
+        // ]);
+
+        $project = Project::find($id);
+        $project->description = $request->input('description');
+        $project->title = $request->input('title');
+        $project->save();
+
+        $projectImages = ProjectImage::all()->where('project_id', '=', $id);
+
+        $existingImages = [];
+        foreach($projectImages as $image) {
+            $existingImages[$image->id] = $image;
+        }
+        
+        if ($request->input('remove_image')) {
+            foreach($request->input('remove_image') as $key => $removeImage) {
+                if(isset($existingImages[$key])) {
+                    $existingImages[$key]->delete();
+                }
+            }
+        }
+
+        if ($request->hasFile('filename'))
+        {
+            foreach ($request->file('filename') as $file)
+            {
+                $name=$file->getClientOriginalName();
+                $file->move(public_path().'/files/', $name);
+                $data[] = $name; 
+                
+                $projectImage = new ProjectImage;
+                $projectImage->project_id = $project->id;
+                $projectImage->project_image_path = $name;
+                $projectImage->save();
+            }
+        }
+
+        return redirect('/projects')->with('succes', 'Het project werd bijgewerkt.');
     }
 
     /**
@@ -80,7 +151,17 @@ class ProjectsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $project = Project::with('project_images')->find($id);
+
+        foreach($project->project_images as $projectImage) {
+            if($projectImage->project_image_path != 'noimage.jpg'){
+                //delete image
+                $projectImage->delete();
+            }
+        }
+
+        $project->delete();
+        return redirect('/projects')->with('succes', 'Het project werd succesvol verwijderd.');
     }
 
     public function projectsList()
