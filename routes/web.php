@@ -16,6 +16,7 @@ Route::get('/', 'WelcomeController@index')->name('welcome');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/project/{id}', 'ProjectsController@showProject');
 Route::get('content-blocks-list', 'ContentBlockController@contentBlocksList');
 Route::get('projects-list', 'ProjectsController@projectsList');
 Route::resources([

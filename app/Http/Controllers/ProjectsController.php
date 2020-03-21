@@ -78,6 +78,12 @@ class ProjectsController extends Controller
         return view('projects.show')->with('project', $project);
     }
 
+    public function showProject($id) {
+        $project = Project::with('project_images')->find($id);
+
+        return view('projects.showprojects')->with('project', $project);
+    }
+
     /**
      * Show the form for editing the specified resource.
      *

@@ -35,7 +35,7 @@
                         <div class="form-group">
                             <label>Tekst</label>
                             <div>
-                                <textarea class="form-control" name="description" id="description" rows="9">{{ $project->description }}</textarea>
+                                <textarea class="form-control" name="description" id="summary-ckeditor">{{ $project->description }}</textarea>
                             </div>
                         </div>
                         <div class="form-group">

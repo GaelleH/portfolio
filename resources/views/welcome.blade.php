@@ -5,7 +5,7 @@
     <div class="container">
         <h1 class="title">Hello I'm Gaëlle Hardy</h1>
         <h3>Web developer</h3>
-        <a href="" class="button button-accent">Contact me</a>
+        <a href="mailto:gaelle_hardy1@hotmail.com" class="button button-accent">Contact me</a>
     </div>
 </section>
 
@@ -24,59 +24,17 @@
 
 <section class="portfolio">
     <h1>Some of our work</h1>
-    <!-- portfolio item 01 -->
-    <figure class="port-item">
-        <img src="../storage/app/public/iphone2.jpeg" alt="portfolio item">
-        <figcaption class="port-desc">
-            <p>Project title</p>
-            <a href="" class="button button-accent button-small">See Project</a>
-        </figcaption>
-    </figure>
-
-    <!-- portfolio item 02 -->
-    <figure class="port-item">
-        <img src="../storage/app/public/iphone2.jpeg" alt="portfolio item">
-        <figcaption class="port-desc">
-            <p>Project title</p>
-            <a href="" class="button button-accent button-small">See Project</a>
-        </figcaption>
-    </figure>
-
-    <!-- portfolio item 03 -->
-    <figure class="port-item">
-        <img src="../storage/app/public/iphone2.jpeg" alt="portfolio item">
-        <figcaption class="port-desc">
-            <p>Project title</p>
-            <a href="" class="button button-accent button-small">See Project</a>
-        </figcaption>
-    </figure>
-
-    <!-- portfolio item 04 -->
-    <figure class="port-item">
-        <img src="../storage/app/public/iphone2.jpeg" alt="portfolio item">
-        <figcaption class="port-desc">
-            <p>Project title</p>
-            <a href="" class="button button-accent button-small">See Project</a>
-        </figcaption>
-    </figure>
-
-    <!-- portfolio item 05 -->
-    <figure class="port-item">
-        <img src="../storage/app/public/iphone2.jpeg" alt="portfolio item">
-        <figcaption class="port-desc">
-            <p>Project title</p>
-            <a href="" class="button button-accent button-small">See Project</a>
-        </figcaption>
-    </figure>
-
-    <!-- portfolio item 06 -->
-    <figure class="port-item">
-        <img src="../storage/app/public/iphone2.jpeg" alt="portfolio item">
-        <figcaption class="port-desc">
-            <p>Project title</p>
-            <a href="" class="button button-accent button-small">See Project</a>
-        </figcaption>
-    </figure>
+    @if(!empty($projects))
+        @foreach($projects as $project)
+            <figure class="port-item">
+                <img src="{{ asset('/files/'.$project->project_images[0]->project_image_path) }}" alt="portfolio item">
+                <figcaption class="port-desc">
+                    <p>{{ $project->title }}</p>
+                    <a href="project/{{$project->id}}" class="button button-accent button-small">See Project</a>
+                </figcaption>
+            </figure>
+        @endforeach
+    @endif
 </section>
 
 {{-- <section class="cta">

@@ -18,7 +18,7 @@
                     <div class="form-group">
                         <h5><strong>Omschrijving</strong></h5>
                         <div>
-                            <span>{{ $project->description }}</span>
+                            <span>{!!$project->description!!}</span>
                         </div>
                     </div>
                     <div>
