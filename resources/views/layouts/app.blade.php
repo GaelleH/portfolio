@@ -18,6 +18,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
     <div id="app">
@@ -42,6 +43,12 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('projects.index') }}">{{ __('Projecten') }}</a>
                             </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('pages.index') }}">{{ __('Pagina\'s') }}</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('settings.index') }}">{{ __('Settings') }}</a>
+                            </li>
                         </ul>
                         @endguest
                         
@@ -53,8 +60,11 @@
                                 <a class="nav-link" href="{{ route('welcome') }}">{{ __('Home') }}</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('login') }}">{{ __('Loginnnn') }}</a>
+                                <a class="nav-link" href="{{ route('allProjects') }}">{{ __('Alle projecten') }}</a>
                             </li>
+                            {{-- <li class="nav-item">
+                                <a class="nav-link" href="{{ route('login') }}">{{ __('Loginnnn') }}</a>
+                            </li> --}}
                             @if (Route::has('register'))
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
@@ -88,6 +98,7 @@
         <main>
             @yield('content')
         </main>
+        @include('cookieConsent::index')
     </div>
 </body>
 <script src="{{ asset('ckeditor/ckeditor.js') }}"></script>

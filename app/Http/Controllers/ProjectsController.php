@@ -4,11 +4,30 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use App\Page;
 use App\Project;
 use App\ProjectImage;
+use App\Setting;
 
 class ProjectsController extends Controller
 {
+    public function allProjects()
+    {
+        $projects = Project::orderBy('id', 'desc')->get();
+        $privacyPolicy = Page::where('slug', '=', 'privacy-beleid')->first();
+        $settings = Setting::all();
+
+        $existingSettings = [];
+        foreach($settings as $setting) {
+            $existingSettings[$setting->name] = $setting->value;
+        }
+
+        view()->share('privacyPolicy', $privacyPolicy);
+        view()->share('settings', $existingSettings);
+
+        return view('projects.allprojects')->with('projects', $projects);
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -80,6 +99,16 @@ class ProjectsController extends Controller
 
     public function showProject($id) {
         $project = Project::with('project_images')->find($id);
+        $privacyPolicy = Page::where('slug', '=', 'privacy-beleid')->first();
+        $settings = Setting::all();
+
+        $existingSettings = [];
+        foreach($settings as $setting) {
+            $existingSettings[$setting->name] = $setting->value;
+        }
+
+        view()->share('privacyPolicy', $privacyPolicy);
+        view()->share('settings', $existingSettings);
 
         return view('projects.showprojects')->with('project', $project);
     }

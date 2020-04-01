@@ -13,13 +13,19 @@
 
 Route::get('/', 'WelcomeController@index')->name('welcome');
 
-Auth::routes();
+Auth::routes(['register' => false]);
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/page/{id}', 'PageController@showPage');
 Route::get('/project/{id}', 'ProjectsController@showProject');
+Route::get('/alle-projecten', 'ProjectsController@allProjects')->name('allProjects');
 Route::get('content-blocks-list', 'ContentBlockController@contentBlocksList');
+Route::get('pages-list', 'PageController@pagesList');
 Route::get('projects-list', 'ProjectsController@projectsList');
+Route::get('settings-list', 'SettingController@settingsList');
 Route::resources([
     'content-blocks' => 'ContentBlockController',
+    'pages' => 'PageController',
     'projects' => 'ProjectsController',
+    'settings' => 'SettingController',
     ]);

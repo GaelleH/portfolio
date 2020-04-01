@@ -2,6 +2,7 @@
 
 @section('content')
 @if(!empty($project))
+    <a href="{{ route('allProjects') }}" class="button button-small button-accent button-project"><i class="fa fa-arrow-left" aria-hidden="true"></i> Terug</a>
     @if(count($project->project_images) > 0)
         @foreach($project->project_images as $projectImage)
             <!-- Slideshow container -->
@@ -18,15 +19,39 @@
         @endforeach
     @endif
 
-    <div class="container">
-        <section class="about-project">
+    <section class="about-project">
+        <div class="container">
             <div class="about-project-textbox">
                 <h1>{{ $project->title }}</h1>
                 <p>{!!$project->description!!}</p>
             </div>
-        </section>
-    </div>
+        </div>
+    </section>
 @endif
+
+<section class="cta-page">
+    <div class="container">
+        <h1 class="title title-cta">{{ $settings['contact_site_title'] }}</h1>
+        <p style="margin-bottom:20px">{{ $settings['sub_contact_site_title'] }}</p>
+        <a href="mailto:hello@gaellehardy.be" class="button button-dark">{{ $settings['button_contact_site_title'] }}</a>
+    </div>
+</section>
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-10">
+                <p style="font-size: 12px;color:white;">
+                    Copyright <a style="color:white;" href="{{ route('login') }}">Gaëlle Hardy</a> 2020
+                </p>
+            </div>
+            <div class="col-md-2">
+                <p style="font-size: 12px;color:white;">
+                    <a class="navbar-nav mr-auto" style="color:white;" href="{{ url('/page/'. $privacyPolicy->id) }}">Privacy beleid</a>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
 
 <script>
 var slideIndex = 0;

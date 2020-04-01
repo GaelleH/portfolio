@@ -1,29 +1,10 @@
 @extends('layouts.app')
 
 @section('content')
-<section class="home-hero">
-    <div class="container">
-        <h1 class="title">Hello I'm Gaëlle Hardy</h1>
-        <h3>Web developer</h3>
-        <a href="mailto:gaelle_hardy1@hotmail.com" class="button button-accent">Contact me</a>
-    </div>
-</section>
-
-@foreach($contentBlocks as $contentBlock)
-    @if($contentBlock->internal_name == 'about-me')
-        <div class="container">
-            <section class="home-about">
-                <div class="home-about-textbox">
-                    <h1>{{ $contentBlock->title }}</h1>
-                    <p>{{ $contentBlock->description }}</p>
-                </div>
-            </section>
-        </div>
-    @endif
-@endforeach
-
+<div class="container">
+    <a href="{{ route('welcome') }}" class="button button-small button-accent"><i class="fa fa-arrow-left" aria-hidden="true"></i> Terug</a>
+</div>
 <section class="portfolio">
-    <h1>Some of our work</h1>
     @if(!empty($projects))
         @foreach($projects as $project)
             <figure class="port-item">
@@ -61,4 +42,25 @@
     </div>
 </footer>
 
+<script>
+var slideIndex = 0;
+showSlides();
+
+// // Next/previous controls
+// function plusSlides(n) {
+//   showSlides(slideIndex += n);
+// }
+
+function showSlides() {
+  var i;
+  var slides = document.getElementsByClassName("mySlides");
+  for (i = 0; i < slides.length; i++) {
+    slides[i].style.display = "none";
+  }
+  slideIndex++;
+  if (slideIndex > slides.length) {slideIndex = 1}
+  slides[slideIndex-1].style.display = "block";
+  setTimeout(showSlides, 10000); // Change image every 2 seconds
+} 
+</script>
 @endsection

@@ -345,8 +345,9 @@ p:last-of-type {
   }
 
   .home-about {
-      /* background-image: url(../../storage/app/public/about_2.jpg); */
+      /* background-image: url(../../storage/app/public/person-using-macbook.jpg); */
       background-repeat: no-repeat;
+      background-size: 60% auto;
       padding-bottom: 2em;
   }
 
@@ -391,12 +392,12 @@ p:last-of-type {
 
 .port-desc {
   position: absolute;
-  z-index: 100;
+  z-index: 1000;
   bottom: 0em;
   left: 0em;
   right: 0em;
   color: #000;
-  background: rgba(255, 255, 255, .8);
+  background: rgba(255, 255, 255, .7);
   padding-bottom: 1em;
 }
 
@@ -424,6 +425,33 @@ p:last-of-type {
   .port-item:hover .port-desc {
       transform: translateY(0%);
   }
+}
+
+/* cta
+==================== */
+
+.cta {
+  background-color: #232323;
+  padding: 5em 0;
+  color: #fff;
+  text-align: center;
+  margin-top: 300px;
+}
+
+.cta-page {
+  background-color: #232323;
+  padding: 5em 0;
+  color: #fff;
+  text-align: center;
+  margin-top: -100px;
+}
+
+/* footer
+==================== */
+
+footer {
+  background-color: #232323;
+  color: #000;
 }
 
 /* typography
@@ -11573,10 +11601,15 @@ a.text-dark:focus {
 
 /* Slideshow container */
 .slideshow-container {
-  max-width: 900px;
+  max-width: 850px;
   position: relative;
   /* margin: auto; */
   margin-left: 0px;
+  margin-top: -53px;
+}
+
+.button-project {
+  margin-left: 75%;
 }
 
 /* Hide the images by default */
@@ -11714,7 +11747,7 @@ a.text-dark:focus {
       width: 70%;
       padding: 7em;
       outline-offset: -3.5em;
-      top: -8em;
+      top: -7em;
       right: -35%;
       margin-left: -2.5%;
       text-align: left;
